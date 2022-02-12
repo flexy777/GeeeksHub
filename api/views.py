@@ -3,13 +3,15 @@ from rest_framework import serializers
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .serializers import ProjectSerializer
+from .serializers import ProjectSerializer, ProfileSerializer
 from projects.models import Project, Review, Tag
+from users.models import Profile
 
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
         {'GET' : 'api/projects'},
+        {'GET' : 'api/users'},
         {'GET' : 'api/projects/id'},
         {'POST' : 'api/projects/id/vote'},
 
@@ -62,3 +64,11 @@ def removeTag(request):
 
     project.tags.remove(tag)
     return Response('Tag was deleted')
+
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def getUsers(request):
+    # print('USER:', request.user)
+    user = Profile.objects.all()
+    serializer = ProfileSerializer(user, many=True)
+    return Response(serializer.data)
