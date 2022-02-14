@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ne1+vm8d*u44x3*1-n_&#j#tt6*3a#@6fq+75g3c)laprc=86_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'devsearch7.herokuapp.com', 'devsearch7.netlify.app']
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     'corsheaders',
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -126,9 +127,9 @@ DATABASES ={
     'default' : {
         'ENGINE' : 'django.db.backends.postgresql',
         'NAME' : 'devsearch',
-        'USER' : 'postgres',
-        'PASSWORD' : 'sammylee1',
-        'HOST' : 'localhost',
+        'USER' : 'flexy',
+        'PASSWORD' : 'XfqY48ihPDtFX3Q',
+        'HOST' : 'database-1.cc70xifq0gu3.us-east-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -177,8 +178,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'samuelomoyele777@gmail.com'
-EMAIL_HOST_PASSWORD = 'hwcfnowryltcciyb'
+EMAIL_HOST_USER = 'devsearch3@gmail.com'
+EMAIL_HOST_PASSWORD = 'uysmhlpnfoesqhjf'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -197,6 +198,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = False
+
+AWS_ACCESS_KEY_ID = 'AKIAR6ZNG2BTQS42KOQA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'devserach-bucket'
+
 
 if os.getcwd() == '/app':
     DEBUG = False
