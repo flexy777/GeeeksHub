@@ -128,7 +128,7 @@ DATABASES ={
         'NAME' : 'devsearch',
         'USER' : 'postgres',
         'PASSWORD' : 'sammylee1',
-        'HOST' : '127.0.0.1',
+        'HOST' : 'localhost',
         'PORT': '5432'
     }
 }
