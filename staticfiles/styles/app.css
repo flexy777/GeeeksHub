@@ -74,13 +74,6 @@ img {
   height: 250px;
   object-fit: cover;
 }
-.fixed-nav-bar 
-{ 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    z-index: 9999;
-}
 
 @media screen and (max-width: 800px) {
   .header__logo {
