@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     'corsheaders',
-    'storages',
+    'storages'
 ]
 
 REST_FRAMEWORK = {
@@ -127,9 +127,9 @@ DATABASES ={
     'default' : {
         'ENGINE' : 'django.db.backends.postgresql',
         'NAME' : 'devsearch',
-        'USER' : 'flexy',
-        'PASSWORD' : 'XfqY48ihPDtFX3Q',
-        'HOST' : 'database-1.cc70xifq0gu3.us-east-1.rds.amazonaws.com',
+        'USER' : os.environ.get('DB_USER'),
+        'PASSWORD' : os.environ.get('DB_PASS'),
+        'HOST' : os.environ.get('DB_HOST'),
         'PORT': '5432',
     }
 }
@@ -178,8 +178,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'devsearch3@gmail.com'
-EMAIL_HOST_PASSWORD = 'uysmhlpnfoesqhjf'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -203,9 +203,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_FILE_OVERWRITE = False
 
-AWS_ACCESS_KEY_ID = 'AKIAR6ZNG2BTQS42KOQA'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'devserach-bucket'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
 
 if os.getcwd() == '/app':

@@ -12,13 +12,17 @@ from django.contrib import messages
 def projects(request):
     projects, search_query = searchProjects(request)
     custom_range, projects = paginateProjects(request, projects, 3)
+    profile = request.user.profile
+    messageRequests = profile.messages.all()
+    unreadCount = messageRequests.filter(is_read=False).count()
 
     
 
     context = {
         "projects":projects,
         'search_query' : search_query,
-        'custom_range' : custom_range
+        'custom_range' : custom_range,
+        'unreadCount' : unreadCount
     }
     return render(request, 'projects/projects.html', context)
 

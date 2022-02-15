@@ -11,11 +11,15 @@ from .utils import searchProfiles, paginateProfiles
 # Create your views here.
 def profiles (request):
     profiles, search_query = searchProfiles(request)
+    profile = request.user.profile
     custom_range, profiles = paginateProfiles(request, profiles, 3)
+    messageRequests = profile.messages.all()
+    unreadCount = messageRequests.filter(is_read=False).count()
     context = {
         'profiles' : profiles,
         'search_query' : search_query,
-        'custom_range':custom_range
+        'custom_range':custom_range,
+         'unreadCount' : unreadCount
     }
     return render(request, 'users/profiles.html', context)
 
