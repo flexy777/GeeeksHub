@@ -57,5 +57,7 @@ def searchProfiles(request):
 
     return profiles, search_query
 
+  
+
 
 

@@ -95,13 +95,16 @@ def registerUser(request):
 @login_required(login_url='login')
 def userAccount(request):
     profile = request.user.profile
+    messageRequests = profile.messages.all()
+    unreadCount = messageRequests.filter(is_read=False).count() 
     skills = profile.skill_set.all()
     projects = profile.project_set.all()
   
     context = {
         'profile':profile, 
         'skills' : skills,
-        'projects' : projects
+        'projects' : projects,
+        'unreadCount' : unreadCount
         }
     return render(request, 'users/account.html', context)
 
